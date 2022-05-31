@@ -109,6 +109,7 @@ class report :
         
 def inputCourses(report) :
     courses = []
+    print("Enter the name of your courses one after the other, then quit\n")
     while True :
         a = input("Enter the name of your Course, or 'q' to quit : ")
         if a == "q" : 
@@ -160,7 +161,7 @@ A = report()
 inputCourses(A)
 inputSubjectiveEstimations(A)
 inputCoursesWeights(A)
-print("Processing, wait please")
+print("Processing, please wait...")
 A.estimations()
 print("Mean estimated mean :",A.mean)
 print("Standard deviation of estimated means :",A.std)
@@ -169,6 +170,7 @@ while True :
               y - Yes
               n - No\n:""")
     if a == 'y' :
+        print("Processing, please wait...")
         A.exportEstimations()
         break
     elif a == 'n' :
