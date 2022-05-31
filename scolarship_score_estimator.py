@@ -90,18 +90,22 @@ class report :
     
     def exportEstimations(self) :
         with open('academicEstimations.txt','w') as f:
-            f.write('Mean estimation : ', str(self.mean),'\n','Standard deviation : ', str(self.std),'\n')
+            line = 'Mean estimation : '+ str(self.mean)+'\n'+'Standard deviation : '+ str(self.std)+'\n'
+            f.write(line)
         with open('academicEstimations.csv','w') as f:
             f.write('#;Mean')
             for i in self.courses :
-                f.write(';'+i)
+                line = ';'+i
+                f.write(line)
             n = 0
             for i in self.reports :
                 f.write('\n')
                 n += 1
-                f.write(str(n)+';'+str(i[0]))
+                line = str(n)+';'+str(i[0])
+                f.write(line)
                 for u in i[1] :
-                    f.write(';'+str(i[1][u]))
+                    line = ';'+str(i[1][u])
+                    f.write(line)
         
 def inputCourses(report) :
     courses = []
@@ -163,7 +167,7 @@ print("Standard deviation of estimated means :",A.std)
 while True :
     a = input("""Do you want to export results ?
               y - Yes
-              n - No""")
+              n - No\n:""")
     if a == 'y' :
         A.exportEstimations()
         break
