@@ -4,8 +4,13 @@ Created on Tue May 31 12:38:17 2022
 
 @author: guill
 """
-import numpy as np
-import scipy.stats
+try : 
+    import numpy as np
+    import scipy.stats
+except : 
+    print("Error : Be sure to have installed numpy and scipy to use this program")
+    input("Press enter to quit")
+    quit()
 
 def mean_confidence_interval(data, confidence=0.95):
     a = 1.0 * np.array(data)
@@ -82,6 +87,21 @@ class report :
         self.mean = np.mean(means)
         self.std = np.std(means)
         self.confidenceInterval =  mean_confidence_interval(means, confidence=0.95)
+    
+    def exportEstimations(self) :
+        with open('academicEstimations.txt','w') as f:
+            f.write('Mean estimation : ', str(self.mean),'\n','Standard deviation : ', str(self.std),'\n')
+        with open('academicEstimations.csv','w') as f:
+            f.write('#;Mean')
+            for i in self.courses :
+                f.write(';'+i)
+            n = 0
+            for i in self.reports :
+                f.write('\n')
+                n += 1
+                f.write(str(n)+';'+str(i[0]))
+                for u in i[1] :
+                    f.write(';'+str(i[1][u]))
         
 def inputCourses(report) :
     courses = []
@@ -131,3 +151,24 @@ def inputCoursesWeights(report) :
                 print("You have to enter a full or float number")
         coursesWeights[i] = a
     report.CoursesWeights(coursesWeights)
+
+A = report()
+inputCourses(A)
+inputSubjectiveEstimations(A)
+inputCoursesWeights(A)
+print("Processing, wait please")
+A.estimations()
+print("Mean estimated mean :",A.mean)
+print("Standard deviation of estimated means :",A.std)
+while True :
+    a = input("""Do you want to export results ?
+              y - Yes
+              n - No""")
+    if a == 'y' :
+        A.exportEstimations()
+        break
+    elif a == 'n' :
+        break
+    else :
+        "Just choose between 'y' or 'n'. Easy."
+input("Press enter to quit")
