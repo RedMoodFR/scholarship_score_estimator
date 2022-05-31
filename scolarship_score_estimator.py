@@ -157,24 +157,29 @@ def inputCoursesWeights(report) :
         coursesWeights[i] = a
     report.CoursesWeights(coursesWeights)
 
-A = report()
-inputCourses(A)
-inputSubjectiveEstimations(A)
-inputCoursesWeights(A)
-print("Processing, please wait...")
-A.estimations()
-print("Mean estimated mean :",A.mean)
-print("Standard deviation of estimated means :",A.std)
-while True :
-    a = input("""Do you want to export results ?
-              y - Yes
-              n - No\n:""")
-    if a == 'y' :
-        print("Processing, please wait...")
-        A.exportEstimations()
-        break
-    elif a == 'n' :
-        break
-    else :
-        "Just choose between 'y' or 'n'. Easy."
-input("Press enter to quit")
+def textBoxProgram() :
+    A = report()
+    inputCourses(A)
+    inputSubjectiveEstimations(A)
+    inputCoursesWeights(A)
+    print("\nProcessing, please wait...")
+    A.estimations()
+    print("\nMean estimated mean :",A.mean)
+    print("Standard deviation of estimated means :",A.std)
+    while True :
+        a = input("""\nDo you want to export results ?
+                  y - Yes
+                  n - No
+                  Your choice : """)
+        if a == 'y' :
+            print("\nProcessing, please wait...")
+            A.exportEstimations()
+            print("\nEstimations exported")
+            break
+        elif a == 'n' :
+            break
+        else :
+            "\nJust choose between 'y' or 'n'. Easy."
+    input("\nPress enter to quit")
+
+textBoxProgram()
