@@ -2,7 +2,11 @@
 """
 Created on Tue May 31 12:38:17 2022
 
-@author: guill
+@author: guillaume cosnier
+visit : 
+    guillaumecosnier.psychoscope.net
+    psychoscope.net
+    youtube.com/c/lesingequibaille
 """
 try : 
     import numpy as np
@@ -128,16 +132,16 @@ def inputSubjectiveEstimations(report) :
                     a = float(a)
                     break
                 except :
-                    print("You have to enter a full or float number")
+                    print("You have to enter a full or a float number")
             while True :
                 b = input("Maximal score expected for the course "+i+' : ')
                 try :
                     b = float(b)
                     break
                 except :
-                    print("You have to enter a full or float number")
+                    print("You have to enter a full or a float number")
             if a > b :
-                print("Minimal score must be inferior or equal to maximum score")
+                print("Minimal score must be inferior or equal to maximal score")
                 continue
             else :
                 break
@@ -153,7 +157,7 @@ def inputCoursesWeights(report) :
                 a = float(a)
                 break
             except :
-                print("You have to enter a full or float number")
+                print("You have to enter a full or a float number")
         coursesWeights[i] = a
     report.CoursesWeights(coursesWeights)
 
